@@ -5,7 +5,9 @@ Options:
 
   -h,  --help                      Print this message.
   -V,  --version                   Print the package version.
-       --token token               Github access token.
+       --username username         Github username.
+       --password password         Github password.
+       --otp password              Github one-time password.
   -ua, --useragent ua              User agent.
        --scopes scope1,scope2,...  List of scopes.
        --note note                 Token note.

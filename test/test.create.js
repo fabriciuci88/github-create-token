@@ -5,7 +5,6 @@
 var tape = require( 'tape' );
 var proxyquire = require( 'proxyquire' );
 var noop = require( '@kgryte/noop' );
-var merge = require( 'utils-merge2' );
 var create = require( './../lib/create.js' );
 
 
@@ -46,7 +45,8 @@ tape( 'function throws if provided an invalid options argument', function test( 
 	function badValue( value ) {
 		return function badValue() {
 			create({
-				'token': value,
+				'username': value,
+				'password': 'boop',
 				'scopes': ['public_repo'],
 				'note': 'beep'
 			}, noop );
@@ -80,56 +80,6 @@ tape( 'function throws if provided a callback argument which is not a function',
 		return function badValue() {
 			create( opts, value );
 		};
-	}
-});
-
-tape( 'if a `port` option is not specified and the protocol is `https`, the default port is `443`', function test( t ) {
-	var create;
-	var opts;
-
-	create = proxyquire( './../lib/create.js', {
-		'./query.js': query,
-		'./validate.js': validate
-	});
-
-	opts = getOpts();
-	opts.protocol = 'https';
-	opts.port = null;
-
-	create( opts, noop );
-
-	function validate( opts, options ) {
-		merge( opts, options );
-		return null;
-	}
-	function query( opts ) {
-		t.equal( opts.port, 443, 'sets the default port to `443` for HTTPS' );
-		t.end();
-	}
-});
-
-tape( 'if a `port` option is not specified and the protocol is `http`, the default port is `80`', function test( t ) {
-	var create;
-	var opts;
-
-	create = proxyquire( './../lib/create.js', {
-		'./query.js': query,
-		'./validate.js': validate
-	});
-
-	opts = getOpts();
-	opts.protocol = 'http';
-	opts.port = null;
-
-	create( opts, noop );
-
-	function validate( opts, options ) {
-		merge( opts, options );
-		return null;
-	}
-	function query( opts ) {
-		t.equal( opts.port, 80, 'sets the default port to `80` for HTTP' );
-		t.end();
 	}
 });
 

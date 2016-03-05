@@ -36,7 +36,7 @@ tape( 'if an options argument is not an object, the function returns a type erro
 	t.end();
 });
 
-tape( 'if provided a `token` option which is not a primitive string, the function returns a type error', function test( t ) {
+tape( 'if provided a `username` option which is not a primitive string, the function returns a type error', function test( t ) {
 	var values;
 	var err;
 	var i;
@@ -54,7 +54,8 @@ tape( 'if provided a `token` option which is not a primitive string, the functio
 
 	for ( i = 0; i < values.length; i++ ) {
 		err = validate( {}, {
-			'token': values[i],
+			'username': values[i],
+			'password': 'boop',
 			'scopes': ['public_repo'],
 			'note': 'beep'
 		});
@@ -63,12 +64,80 @@ tape( 'if provided a `token` option which is not a primitive string, the functio
 	t.end();
 });
 
-tape( 'a `token` option is required', function test( t ) {
+tape( 'a `username` option is required', function test( t ) {
 	var err = validate( {}, {
+		'password': 'boop',
 		'scopes': ['public_repo'],
 		'note': 'beep'
 	});
-	t.ok( err instanceof TypeError, 'a token option is required' );
+	t.ok( err instanceof TypeError, 'a username option is required' );
+	t.end();
+});
+
+tape( 'if provided a `password` option which is not a primitive string, the function returns a type error', function test( t ) {
+	var values;
+	var err;
+	var i;
+
+	values = [
+		5,
+		NaN,
+		null,
+		undefined,
+		true,
+		[],
+		{},
+		function(){}
+	];
+
+	for ( i = 0; i < values.length; i++ ) {
+		err = validate( {}, {
+			'username': 'beep',
+			'password': values[i],
+			'scopes': ['public_repo'],
+			'note': 'beep'
+		});
+		t.ok( err instanceof TypeError, 'returns type error when provided ' + values[i] );
+	}
+	t.end();
+});
+
+tape( 'a `password` option is required', function test( t ) {
+	var err = validate( {}, {
+		'username': 'beep',
+		'scopes': ['public_repo'],
+		'note': 'beep'
+	});
+	t.ok( err instanceof TypeError, 'a password option is required' );
+	t.end();
+});
+
+tape( 'if provided an `otp` option which is not a primitive string, the function returns a type error', function test( t ) {
+	var values;
+	var err;
+	var i;
+
+	values = [
+		5,
+		NaN,
+		null,
+		undefined,
+		true,
+		[],
+		{},
+		function(){}
+	];
+
+	for ( i = 0; i < values.length; i++ ) {
+		err = validate( {}, {
+			'username': 'beep',
+			'password': 'boop',
+			'scopes': ['public_repo'],
+			'note': 'beep',
+			'otp': values[i]
+		});
+		t.ok( err instanceof TypeError, 'returns type error when provided ' + values[i] );
+	}
 	t.end();
 });
 
@@ -90,7 +159,8 @@ tape( 'if provided a `useragent` option which is not a primitive string, the fun
 
 	for ( i = 0; i < values.length; i++ ) {
 		err = validate( {}, {
-			'token': 'abcdefg',
+			'username': 'beep',
+			'password': 'boop',
 			'scopes': ['public_repo'],
 			'note': 'beep',
 			'useragent': values[i]
@@ -120,7 +190,8 @@ tape( 'if provided a `scopes` option which is not a string array, the function r
 
 	for ( i = 0; i < values.length; i++ ) {
 		err = validate( {}, {
-			'token': 'abcdefg',
+			'username': 'beep',
+			'password': 'boop',
 			'note': 'beep',
 			'scopes': values[i]
 		});
@@ -131,7 +202,8 @@ tape( 'if provided a `scopes` option which is not a string array, the function r
 
 tape( 'a `scopes` option is required', function test( t ) {
 	var err = validate( {}, {
-		'token': 'abcdefg',
+		'username': 'beep',
+		'password': 'boop',
 		'note': 'beep'
 	});
 	t.ok( err instanceof TypeError, 'a scopes option is required' );
@@ -156,7 +228,8 @@ tape( 'if provided a `note` option which is not a primitive string, the function
 
 	for ( i = 0; i < values.length; i++ ) {
 		err = validate( {}, {
-			'token': 'abcdefg',
+			'username': 'beep',
+			'password': 'boop',
 			'scopes': ['public_repo'],
 			'note': values[i]
 		});
@@ -167,7 +240,8 @@ tape( 'if provided a `note` option which is not a primitive string, the function
 
 tape( 'a `note` option is required', function test( t ) {
 	var err = validate( {}, {
-		'token': 'abcdefg',
+		'username': 'beep',
+		'password': 'boop',
 		'scopes': ['public_repo']
 	});
 	t.ok( err instanceof TypeError, 'a note option is required' );
@@ -195,7 +269,8 @@ tape( 'if provided a `note_url` option which is not a valid URI, the function re
 
 	for ( i = 0; i < values.length; i++ ) {
 		err = validate( {}, {
-			'token': 'abcdefg',
+			'username': 'beep',
+			'password': 'boop',
 			'scopes': ['public_repo'],
 			'note': 'beep',
 			'note_url': values[i]
@@ -224,7 +299,8 @@ tape( 'if provided a `client_id` option which is not a 20-character primitive st
 
 	for ( i = 0; i < values.length; i++ ) {
 		err = validate( {}, {
-			'token': 'abcdefg',
+			'username': 'beep',
+			'password': 'boop',
 			'scopes': ['public_repo'],
 			'note': 'beep',
 			'client_id': values[i]
@@ -253,7 +329,8 @@ tape( 'if provided a `client_secret` option which is not a 40-character primitiv
 
 	for ( i = 0; i < values.length; i++ ) {
 		err = validate( {}, {
-			'token': 'abcdefg',
+			'username': 'beep',
+			'password': 'boop',
 			'scopes': ['public_repo'],
 			'note': 'beep',
 			'client_secret': values[i]
@@ -281,7 +358,8 @@ tape( 'if provided a `fingerprint` option which is not a primitive string, the f
 
 	for ( i = 0; i < values.length; i++ ) {
 		err = validate( {}, {
-			'token': 'abcdefg',
+			'username': 'beep',
+			'password': 'boop',
 			'scopes': ['public_repo'],
 			'note': 'beep',
 			'fingerprint': values[i]
@@ -297,7 +375,9 @@ tape( 'the function returns `null` if all options are valid', function test( t )
 	var err;
 
 	options = {
-		'token': 'abcdefg',
+		'username': 'beep',
+		'password': 'boop',
+		'otp': '1234',
 		'useragent': 'beeper-booper',
 		'scopes': ['public_repo'],
 		'note': 'beep',
@@ -320,7 +400,8 @@ tape( 'the function will ignore unrecognized options', function test( t ) {
 	var err;
 
 	err = validate( {}, {
-		'token': 'abcdefg',
+		'username': 'beep',
+		'password': 'boop',
 		'scopes': ['public_repo'],
 		'note': 'beep',
 		'beep': 'boop',

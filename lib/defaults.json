@@ -6,6 +6,8 @@
 	"method": "POST",
 	"useragent": "https://github.com/kgryte/github-create-token",
 	"accept": "application/vnd.github.v3+json",
+	"username": "",
+	"password": "",
 	"scopes": [],
 	"note": ""
 }

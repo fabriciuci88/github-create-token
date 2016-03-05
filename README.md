@@ -25,7 +25,8 @@ var createToken = require( 'github-create-token' );
 
 ``` javascript
 var opts = {
-	'token': 'tkjorjk34ek3nj4!'
+	'username': 'beep',
+	'password': 'boop'
 };
 
 createToken( opts, clbk );
@@ -48,7 +49,9 @@ function clbk( error, results, info ) {
 ```
 
 The `function` accepts the following `options`:
-*	__token__: Github [access token][github-token] (*required*).
+*	__username__: Github username (*required*).
+* 	__password__: Github password (*required*).
+*	__otp__: Github one-time password (2-factor authentication).
 *	__scopes__: list of scopes (*required*).
 *	__note__: a note as to the purpose of the [token][github-token] (*required*).
 *	__note_url__: an app URL if authorizing an application.
@@ -58,11 +61,12 @@ The `function` accepts the following `options`:
 *	__useragent__: [user agent][github-user-agent] `string`.
 *
 
-The `function` does __not__ support basic authentication using a `username` and `password`. To [authenticate][github-oauth2] with Github, set the [`token`][github-token] option.
+The `function` __only__ supports basic authentication using a `username` and `password`. To [authenticate][github-oauth2] with Github, set the `username` and `password` options.
 
 ``` javascript
 var opts = {
-	'token': 'tkjorjk34ek3nj4!',
+	'username': 'beep',
+	'password': 'boop',
 	'scopes': [ 'public_repo' ],
 	'note': 'for my beepboop app'
 };
@@ -74,7 +78,8 @@ To specify a [user agent][github-user-agent], set the `useragent` option.
 
 ``` javascript
 var opts = {
-	'token': 'tkjorjk34ek3nj4!',
+	'username': 'beep',
+	'password': 'boop',
 	'scopes': [ 'public_repo' ],
 	'note': 'for my beepboop app',
 	'useragent': 'hello-github!'
@@ -99,7 +104,9 @@ createToken( opts, clbk );
 var createToken = require( 'github-create-token' );
 
 var opts = {
-	'token': '<your_token_goes_here>',
+	'username': '<username>',
+	'password': '<password>',
+	'otp': '<otp>',
 	'scopes': [ 'public_repo' ],
 	'note': 'for my beepboop app',
 	'useragent': 'beep-boop-bop'
@@ -124,8 +131,6 @@ To run the example code from the top-level application directory,
 $ node ./examples/index.js
 ```
 
-__Note__: in order to run the example, you will need to obtain an access [token][github-token] with appropriate permissions and modify the `token` option accordingly.
-
 
 ---
 ## CLI
@@ -148,7 +153,9 @@ Options:
 
   -h,  --help                      Print this message.
   -V,  --version                   Print the package version.
-       --token token               Github access token.
+       --username username         Github username.
+       --password password         Github password.
+       --otp password              Github one-time password.
   -ua, --useragent ua              User agent.
        --scopes scope1,scope2,...  List of scopes.
        --note note                 Token note.
@@ -161,38 +168,38 @@ Options:
 
 ### Notes
 
-*	In addition to the [`token`][github-token] option, the [token][github-token] may also be specified by a [`GITHUB_TOKEN`][github-token] environment variable. The command-line option __always__ takes precedence.
+*	In addition to the `username` and `password` options, a `username` and `password` may also be specified by `GITHUB_USERNAME` and `GITHUB_PASSWORD` environment variables. The command-line options __always__ take precedence.
 *	[Token][github-token] information is written to `stdout`.
 *	[Rate limit][github-rate-limit] information is written to `stderr`.
 
 
 ### Examples
 
-Setting the access [token][github-token] using the command-line option:
+Setting a username and password using the command-line options:
 
 ``` bash
-$ DEBUG=* ghcreatetoken --token <token> --scopes=read_org,repo_status --note 'for my beepboop app'
+$ DEBUG=* ghcreatetoken --username <username> --password <password> --scopes=read_org,repo_status --note 'for my beepboop app'
 # => '{...}'
 ```
 
-Setting the access [token][github-token] using an environment variable:
+Setting a username and password using environment variables:
 
 ``` bash
-$ DEBUG=* GITHUB_TOKEN=<token> ghcreatetoken --scopes=read_org,repo_status --note 'for my beepboop app'
+$ DEBUG=* GITHUB_USERNAME=<username> GITHUB_PASSWORD=<password> ghcreatetoken --scopes=read_org,repo_status --note 'for my beepboop app'
 # => '{...}'
 ```
 
 For local installations, modify the command to point to the local installation directory; e.g., 
 
 ``` bash
-$ DEBUG=* ./node_modules/.bin/ghcreatetoken --token <token> --scopes=read_org,repo_status --note 'for my beepboop app'
+$ DEBUG=* ./node_modules/.bin/ghcreatetoken --username <username> --password <password> --scopes=read_org,repo_status --note 'for my beepboop app'
 # => '{...}'
 ```
 
 Or, if you have cloned this repository and run `npm install`, modify the command to point to the executable; e.g., 
 
 ``` bash
-$ DEBUG=* node ./bin/cli --token <token> --scopes=read_org,repo_status --note 'for my beepboop app'
+$ DEBUG=* node ./bin/cli --username <username> --password <password> --scopes=read_org,repo_status --note 'for my beepboop app'
 # => '{...}'
 ```
 

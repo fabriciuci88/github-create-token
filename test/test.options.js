@@ -17,7 +17,8 @@ function setup() {
 		'port': 80,
 		'useragent': 'beep-boop',
 		'accept': 'application/vnd.github.v3+json',
-		'token': 'abcdef123'
+		'username': 'beep',
+		'password': 'boop'
 	};
 }
 
@@ -73,7 +74,7 @@ tape( 'the function sets the request headers', function test( t ) {
 	expected = {
 		'User-Agent': opts.useragent,
 		'Accept': opts.accept,
-		'Authorization': 'token ' + opts.token,
+		'Authorization': 'Basic ' + opts.username + ':' + opts.password,
 		'Content-Type': 'application/json'
 	};
 

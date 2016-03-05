@@ -2,7 +2,8 @@
 
 function getOpts() {
 	var opts = {
-		'token': 'abcdef',
+		'username': 'beep',
+		'password': 'boop',
 		'hostname': 'api.github.com',
 		'port': 443,
 		'protocol': 'https',

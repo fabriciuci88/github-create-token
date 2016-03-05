@@ -14,7 +14,8 @@ var create = require( './../lib' );
 
 // VARIABLES //
 
-var token;
+var username;
+var password;
 var args;
 
 
@@ -68,14 +69,28 @@ if ( args.version ) {
 
 opts = {};
 
-if ( args.token ) {
-	token = args.token;
+if ( args.username ) {
+	username = args.username;
 }
-else if ( process.env.GITHUB_TOKEN ) {
-	token = process.env.GITHUB_TOKEN;
+else if ( process.env.GITHUB_USERNAME ) {
+	username = process.env.GITHUB_USERNAME;
 }
-if ( token ) {
-	opts.token = token;
+if ( username ) {
+	opts.username = username;
+}
+if ( args.password ) {
+	password = args.password;
+}
+else if ( process.env.GITHUB_PASSWORD ) {
+	password = process.env.GITHUB_PASSWORD;
+}
+if ( password ) {
+	opts.password = password;
+} else {
+	// TODO: prompt!
+}
+if ( args.otp ) {
+	opts.otp = args.otp;
 }
 if ( args.useragent ) {
 	opts.useragent = args.useragent;

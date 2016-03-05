@@ -3,7 +3,9 @@
 var createToken = require( './../lib' );
 
 var opts = {
-	'token': '<your_token_goes_here>',
+	'username': '<username>',
+	'password': '<password>',
+	'otp': '<otp>',
 	'scopes': [ 'public_repo' ],
 	'note': 'for my beepboop app',
 	'useragent': 'beep-boop-bop'
