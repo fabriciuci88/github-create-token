@@ -54,8 +54,10 @@
   },
   "dependencies": {
     "debug": "^2.2.0",
+    "utils-copy": "^1.1.1",
     "utils-json-parse": "^1.0.0",
     "utils-left-pad-string": "^1.0.1",
+    "validate.io-function": "^1.0.2",
     "validate.io-object": "^1.0.4",
     "validate.io-string-primitive": "^1.0.0",
     "validate.io-string-primitive-array": "^1.0.0",
@@ -73,7 +75,8 @@
     "proxyquireify": "^3.1.1",
     "tap-spec": "4.x.x",
     "tape": "4.x.x",
-    "testling": "1.x.x"
+    "testling": "1.x.x",
+    "utils-merge2": "^2.0.0"
   },
   "testling": {
     "files": [
