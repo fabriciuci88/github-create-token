@@ -136,6 +136,11 @@ function clbk( error, results, info ) {
 		process.stderr.write( JSON.stringify( info )+'\n', 'utf8' );
 	}
 	if ( error ) {
+		if ( error.status === 401 ) {
+			// Prompt for multi-factor authentication:
+			opts.otp = prompt( 'Enter one-time password: ', {'echo':''} );
+			return create( opts, clbk );
+		}
 		process.stderr.write( error.message+'\n', 'utf8' );
 		return process.exit( 1 );
 	}
