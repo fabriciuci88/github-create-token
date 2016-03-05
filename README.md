@@ -206,9 +206,11 @@ Options:
 
 *	In addition to the `username` and `password` options, a `username` and `password` may also be specified by `GITHUB_USERNAME` and `GITHUB_PASSWORD` environment variables. The command-line options __always__ take precedence.
 *	If a `username` is __not__ provided, the implementation will attempt to infer a username by executing
+
 	```
 	git config user.name
 	```
+	
 	in the current working directory.
 *	If a `password` is __not__ provided, the user will be prompted to provide a `password`.
 *	[Token][github-token] information is written to `stdout`.
