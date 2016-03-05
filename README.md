@@ -51,9 +51,9 @@ function clbk( error, results, info ) {
 The `function` accepts the following `options`:
 *	__username__: Github username (*required*).
 * 	__password__: Github password (*required*).
-*	__otp__: Github one-time password (2-factor authentication).
 *	__scopes__: list of scopes (*required*).
 *	__note__: a note as to the purpose of the [token][github-token] (*required*).
+*	__otp__: Github one-time password (2-factor authentication).
 *	__note_url__: an app URL if authorizing an application.
 *	__client_id__: a `20` character OAuth app client key for which to create the [token][github-token].
 *	__client_secret__: a `40` character OAuth app client secret for which to create the [token][github-token].
