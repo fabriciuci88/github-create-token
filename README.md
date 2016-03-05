@@ -229,14 +229,14 @@ $ DEBUG=* GITHUB_USERNAME=<username> GITHUB_PASSWORD=<password> ghcreatetoken --
 For local installations, modify the command to point to the local installation directory; e.g., 
 
 ``` bash
-$ DEBUG=* ./node_modules/.bin/ghcreatetoken --username <username> --password <password> --scopes=read_org,repo_status --note 'for my beepboop app'
+$ DEBUG=* ./node_modules/.bin/ghcreatetoken --scopes=read_org,repo_status --note 'for my beepboop app'
 # => '{...}'
 ```
 
 Or, if you have cloned this repository and run `npm install`, modify the command to point to the executable; e.g., 
 
 ``` bash
-$ DEBUG=* node ./bin/cli --username <username> --password <password> --scopes=read_org,repo_status --note 'for my beepboop app'
+$ DEBUG=* node ./bin/cli --scopes=read_org,repo_status --note 'for my beepboop app'
 # => '{...}'
 ```
 
