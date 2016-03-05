@@ -127,11 +127,12 @@ if ( args.password ) {
 else if ( process.env.GITHUB_PASSWORD ) {
 	password = process.env.GITHUB_PASSWORD;
 }
+else {
+	// Prompt for a password:
+	password = prompt( 'Enter Github password: ', {'echo':''} );
+}
 if ( password ) {
 	opts.password = password;
-} else {
-	// Prompt for a password:
-	opts.password = prompt( 'Enter Github password: ', {'echo':''} );
 }
 
 
