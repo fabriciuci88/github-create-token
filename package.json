@@ -13,7 +13,8 @@
 		}
 	],
 	"bin": {
-		"ghcreatetoken": "./bin/cli"
+		"ghcreatetoken": "./bin/cli",
+		"github-create-token": "./bin/cli"
 	},
 	"scripts": {
 		"test": "if [ \"${TRAVIS}\" ]; then npm run test-ci; else npm run test-local; fi",
@@ -38,11 +39,15 @@
 		"authorization",
 		"authorize",
 		"permissions",
-		"alllow",
+		"allow",
 		"grant",
 		"utility",
 		"util",
-		"cli"
+		"cli",
+		"api",
+		"request",
+		"post",
+		"create"
 	],
 	"bugs": {
 		"url": "https://github.com/kgryte/github-create-repo/issues"
@@ -79,5 +84,5 @@
 			"android-browser/4.2..latest"
 		]
 	},
-  "license": "MIT"
+	"license": "MIT"
 }
