@@ -1,0 +1,27 @@
+{
+	"string": [
+		"token",
+		"useragent",
+		"scopes",
+		"note",
+		"note_url",
+		"client_id",
+		"client_secret",
+		"fingerprint"
+	],
+	"boolean": [
+		"help",
+		"version"
+	],
+	"alias": {
+		"help": [
+			"h"
+		],
+		"version": [
+			"V"
+		],
+		"useragent": [
+			"ua"
+		]
+	}
+}

@@ -84,7 +84,6 @@ createToken( opts, clbk );
 ```
 
 
----
 ## Notes
 
 *	[Rate limit][github-rate-limit] information includes the following:

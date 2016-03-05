@@ -1,0 +1,127 @@
+#!/usr/bin/env node
+'use strict';
+
+// MODULES //
+
+var fs = require( 'fs' );
+var path = require( 'path' );
+var parseArgs = require( 'minimist' );
+var notifier = require( 'update-notifier' );
+var pkg = require( './../package.json' );
+var opts = require( './opts.json' );
+var create = require( './../lib' );
+
+
+// VARIABLES //
+
+var token;
+var args;
+
+
+// FUNCTIONS //
+
+/**
+* FUNCTION: onClose()
+*	Callback invoked upon writing a file to `stdout`.
+*
+* @private
+*/
+function onClose() {
+	process.exit( 0 );
+}
+
+
+// INIT //
+
+process.stdout.on( 'error', process.exit );
+
+
+// PACKAGE UPDATES //
+
+notifier( { 'pkg': pkg } ).notify();
+
+
+// ARGUMENTS //
+
+args = parseArgs( process.argv.slice( 2 ), opts );
+
+
+// HELP //
+
+if ( args.help ) {
+	fs.createReadStream( path.join( __dirname, 'usage.txt' ) )
+		.pipe( process.stdout )
+		.on( 'close', onClose );
+    return;
+}
+
+
+// VERSION //
+
+if ( args.version ) {
+	console.log( pkg.version );
+	return;
+}
+
+
+// OPTIONS //
+
+opts = {};
+
+if ( args.token ) {
+	token = args.token;
+}
+else if ( process.env.GITHUB_TOKEN ) {
+	token = process.env.GITHUB_TOKEN;
+}
+if ( token ) {
+	opts.token = token;
+}
+if ( args.useragent ) {
+	opts.useragent = args.useragent;
+}
+if ( args.scopes ) {
+	opts.scopes = args.scopes.split( ',' );
+}
+if ( args.note ) {
+	opts.note = args.note;
+}
+if ( args.note_url ) {
+	opts.note_url = args.note_url;
+}
+if ( args.client_id ) {
+	opts.client_id = args.client_id;
+}
+if ( args.client_secret ) {
+	opts.client_secret = args.client_secret;
+}
+if ( args.fingerprint ) {
+	opts.fingerprint = args.fingerprint;
+}
+
+
+// CREATE TOKEN //
+
+create( opts, clbk );
+
+/**
+* FUNCTION: clbk( error, results, info )
+*	Callback invoked upon creating a token.
+*
+* @private
+* @param {Error|Null} error - error object
+* @param {Object} results - query results
+* @param {Object} info - rate limit info
+* @returns {Void}
+*/
+function clbk( error, results, info ) {
+	if ( info ) {
+		process.stderr.write( JSON.stringify( info )+'\n', 'utf8' );
+	}
+	if ( error ) {
+		process.stderr.write( error.message+'\n', 'utf8' );
+		return process.exit( 1 );
+	}
+	process.stdout.write( JSON.stringify( results )+'\n', 'utf8' );
+	process.exit( 0 );
+}

@@ -1,0 +1,16 @@
+
+Usage: ghcreatetoken [options]
+
+Options:
+
+  -h,  --help                      Print this message.
+  -V,  --version                   Print the package version.
+       --token token               Github access token.
+  -ua, --useragent ua              User agent.
+       --scopes scope1,scope2,...  List of scopes.
+       --note note                 Token note.
+       --note_url url              Application URL.
+       --client_id id              Client id.
+       --client_secret secret      Client secret.
+       --fingerprint fingerprint   Unique token identifier.
+
