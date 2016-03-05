@@ -59,7 +59,6 @@ The `function` accepts the following `options`:
 *	__client_secret__: a `40` character OAuth app client secret for which to create the [token][github-token].
 *	__fingerprint__: a unique `string` to distinguish a token from others created for the same client id and user.
 *	__useragent__: [user agent][github-user-agent] `string`.
-*
 
 The `function` __only__ supports basic authentication using a `username` and `password`. To [authenticate][github-oauth2] with Github, set the `username` and `password` options.
 
