@@ -26,7 +26,9 @@ var createToken = require( 'github-create-token' );
 ``` javascript
 var opts = {
 	'username': 'beep',
-	'password': 'boop'
+	'password': 'boop',
+	'scopes': [ 'public_repo', 'read:org' ],
+	'note': 'beep'
 };
 
 createToken( opts, clbk );
@@ -43,7 +45,27 @@ function clbk( error, results, info ) {
 	}
 	console.log( JSON.stringify( results ) );
 	/* returns
-		// TODO
+		{
+			"id": 1,
+			"url":"https://api.github.com/authorizations/1",
+			"app": {
+				"name":"beep",
+				"url":"https://developer.github.com/v3/oauth_authorizations/",
+				"client_id":"00000000000000000000"
+			},
+			"token": "abcdefgh12345678",
+			"hashed_token": "25f94a2a5c7fbaf499c665bc73d67c1c87e496da8985131633ee0a95819db2e8",
+			"token_last_eight": "12345678",
+			"note": "beep",
+			"note_url": null,
+			"created_at": "2016-03-05T06:34:01Z",
+			"updated_at": "2016-03-05T06:34:01Z",
+			"scopes": [
+				"public_repo",
+				"read:org"
+			],
+			"fingerprint": null
+		}
 	*/
 }
 ```

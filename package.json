@@ -55,6 +55,7 @@
   "dependencies": {
     "debug": "^2.2.0",
     "minimist": "^1.2.0",
+    "prompt-sync": "^4.0.4",
     "update-notifier": "^0.6.1",
     "utils-copy": "^1.1.1",
     "utils-json-parse": "^1.0.0",

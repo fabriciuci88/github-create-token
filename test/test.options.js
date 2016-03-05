@@ -74,7 +74,7 @@ tape( 'the function sets the request headers', function test( t ) {
 	expected = {
 		'User-Agent': opts.useragent,
 		'Accept': opts.accept,
-		'Authorization': 'Basic ' + opts.username + ':' + opts.password,
+		'Authorization': 'Basic ' + new Buffer( opts.username+':'+opts.password ).toString( 'base64' ),
 		'Content-Type': 'application/json'
 	};
 

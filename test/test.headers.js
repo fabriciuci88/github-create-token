@@ -62,7 +62,7 @@ tape( 'the function sets the `Authorization` header', function test( t ) {
 	opts = setup();
 	h = headers( opts );
 
-	expected = 'Basic ' +opts.username+':'+opts.password;
+	expected = 'Basic ' + new Buffer( opts.username+':'+opts.password ).toString( 'base64' );
 
 	t.equal( h[ 'Authorization' ], expected, 'sets the `Authorization` header' );
 	t.end();
