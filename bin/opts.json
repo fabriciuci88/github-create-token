@@ -13,7 +13,8 @@
 	],
 	"boolean": [
 		"help",
-		"version"
+		"version",
+		"lscopes"
 	],
 	"alias": {
 		"help": [

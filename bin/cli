@@ -69,6 +69,16 @@ if ( args.version ) {
 }
 
 
+// LIST SCOPES //
+
+if ( args.lscopes ) {
+	fs.createReadStream( path.join( __dirname, 'scopes.txt' ) )
+		.pipe( process.stdout )
+		.on( 'close', onClose );
+	return;
+}
+
+
 // OPTIONS //
 
 opts = {};

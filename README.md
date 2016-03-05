@@ -73,7 +73,7 @@ function clbk( error, results, info ) {
 The `function` accepts the following `options`:
 *	__username__: Github username (*required*).
 * 	__password__: Github password (*required*).
-*	__scopes__: list of scopes (*required*).
+*	__scopes__: list of [scopes][github-scopes] (*required*).
 *	__note__: a note as to the purpose of the [token][github-token] (*required*).
 *	__otp__: Github one-time password (2-factor authentication).
 *	__note_url__: an app URL if authorizing an application.
@@ -188,6 +188,7 @@ Options:
 
   -h,  --help                      Print this message.
   -V,  --version                   Print the package version.
+       --lscopes                   List all possible scopes.
        --username username         Github username.
        --password password         Github password.
        --otp password              Github one-time password.
@@ -329,3 +330,4 @@ Copyright &copy; 2016. Athan Reines.
 [github-rate-limit]: https://developer.github.com/v3/rate_limit/
 [github-create-token]: https://developer.github.com/v3/oauth_authorizations/#create-a-new-authorization
 [github-two-factor]: https://help.github.com/articles/about-two-factor-authentication/
+[github-scopes]: https://developer.github.com/v3/oauth/#scopes

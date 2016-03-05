@@ -5,6 +5,7 @@ Options:
 
   -h,  --help                      Print this message.
   -V,  --version                   Print the package version.
+       --lscopes                   List all possible scopes.
        --username username         Github username.
        --password password         Github password.
        --otp password              Github one-time password.
