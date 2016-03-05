@@ -95,8 +95,7 @@ var opts = {
 	'password': 'boop',
 	'otp': '1234',
 	'scopes': [ 'public_repo' ],
-	'note': 'for my beepboop app',
-	'useragent': 'hello-github!'
+	'note': 'for my beepboop app'
 };
 
 createToken( opts, clbk );
