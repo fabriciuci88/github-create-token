@@ -151,11 +151,13 @@ create( opts, clbk );
 * @returns {Void}
 */
 function clbk( error, results, info ) {
+	var re;
 	if ( info ) {
 		process.stderr.write( JSON.stringify( info )+'\n', 'utf8' );
 	}
 	if ( error ) {
-		if ( error.status === 401 ) {
+		re = /otp/ig;
+		if ( error.status === 401 && re.test( error.message ) ) {
 			// Prompt for multi-factor authentication:
 			opts.otp = prompt( 'Enter one-time password: ', {'echo':''} );
 			return create( opts, clbk );
