@@ -1,0 +1,11 @@
+{
+	"protocol": "https",
+	"hostname": "api.github.com",
+	"port": 443,
+	"pathname": "/authorizations",
+	"method": "POST",
+	"useragent": "https://github.com/kgryte/github-create-token",
+	"accept": "application/vnd.github.v3+json",
+	"scopes": [],
+	"note": ""
+}
