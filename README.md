@@ -87,6 +87,21 @@ var opts = {
 createToken( opts, clbk );
 ```
 
+If a user has [two-factor authentication][github-two-factor] enabled, set the `otp` (one-time password) option.
+
+``` javascript
+var opts = {
+	'username': 'beep',
+	'password': 'boop',
+	'otp': '1234',
+	'scopes': [ 'public_repo' ],
+	'note': 'for my beepboop app',
+	'useragent': 'hello-github!'
+};
+
+createToken( opts, clbk );
+```
+
 
 ## Notes
 
@@ -290,3 +305,4 @@ Copyright &copy; 2016. Athan Reines.
 [github-user-agent]: https://developer.github.com/v3/#user-agent-required
 [github-rate-limit]: https://developer.github.com/v3/rate_limit/
 [github-create-token]: https://developer.github.com/v3/oauth_authorizations/#create-a-new-authorization
+[github-two-factor]: https://help.github.com/articles/about-two-factor-authentication/
