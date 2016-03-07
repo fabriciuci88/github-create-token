@@ -90,9 +90,13 @@ else if ( process.env.GITHUB_USERNAME ) {
 	username = process.env.GITHUB_USERNAME;
 }
 else {
-	// Attempt to infer from `git config`:
-	username = exec( 'git config user.name', {'cwd': cwd()} );
-	username = username.toString().replace( eol, '' );
+	// Attempt to infer from `git config`...
+	try {
+		username = exec( 'git config user.name', {'cwd': cwd()} );
+		username = username.toString().replace( eol, '' );
+	} catch ( err ) {
+		throw new Error( 'invalid invocation. Must either 1) provide a username via a command-line option, 2) set a GITHUB_USERNAME environment variable, or 3) have git installed and run this command in a .git repository.' );
+	}
 }
 if ( username ) {
 	opts.username = username;
