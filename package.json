@@ -27,7 +27,7 @@
   "main": "./lib",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kgryte/github-create-repo.git"
+    "url": "git://github.com/kgryte/github-create-token.git"
   },
   "keywords": [
     "gh",
